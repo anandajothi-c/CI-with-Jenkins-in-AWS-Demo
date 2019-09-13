@@ -18,7 +18,7 @@ pipeline {
         NEXUS_REPOSITORY = "devops-demo-anand"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus_credentials"
-        version_num=${env.BUILD_NUMBER}
+        
     }
     stages {
         stage("clone code") {
@@ -26,6 +26,7 @@ pipeline {
                 script {
                     // Let's clone the source
                     git 'https://github.com/anandajothi-c/CI-with-Jenkins-in-AWS-Demo.git';
+                    version_num=sh (echo ${env.BUILD_NUMBER})
                 }
             }
         }
