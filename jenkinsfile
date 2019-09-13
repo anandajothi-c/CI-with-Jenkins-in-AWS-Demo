@@ -40,7 +40,7 @@ pipeline {
         stage("sonar build") {
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'c649f300572b3497c733fcdcb016128115eab7c9', installationName: 'Sonarqube_devops_test') 
+                    withSonarQubeEnv(installationName: 'Sonarqube_devops_test') 
                     { 
                     // You can override the credential to be used
                     sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
