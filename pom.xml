@@ -50,4 +50,9 @@
             </plugin>
         </plugins>
     </build>
+<distributionManagement>
+<repository>
+<id>maven-hosted</id>
+<url>http://35.246.44.183:8081/repository/devops-demo-anand/</url>
+</repository>
 </project>
