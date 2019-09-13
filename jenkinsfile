@@ -37,6 +37,15 @@ pipeline {
                 }
             }
         }
+        stage("sonar build") {
+            steps {
+                script {
+                    // If you are using Windows then you should use "bat" step
+                    // Since unit testing is out of the scope we skip them
+                    sh (/mvn sonar:sonar -Dsonar.host.url=http://35.187.24.143:9000 -Dsonar.login=c649f300572b3497c733fcdcb016128115eab7c9/)
+                }
+            }
+        }
        stage("publish to nexus") {
             steps {
 nexusArtifactUploader artifacts: [[artifactId: 'project_devops_test', classifier: 'debug', file: 'project/target/project-1.0-RAMA.war', type: 'war']], credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: '35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: '1.0'
