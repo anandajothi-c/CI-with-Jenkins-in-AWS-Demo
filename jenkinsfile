@@ -39,7 +39,7 @@ pipeline {
         }
        stage("publish to nexus") {
             steps {
-nexusArtifactUploader artifacts: [[artifactId: 'nexus-artifact-uploader', classifier: 'debug', file: '*/target/project-1.0-RAMA.war', type: 'war']], credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: 'http://35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: '1.0'
+nexusArtifactUploader artifacts: [[artifactId: 'nexus-artifact-uploader', classifier: 'debug', file: 'project-1.0-RAMA.war', type: 'war']], credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: 'http://35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: '1.0'
                     }
                 }
     }
