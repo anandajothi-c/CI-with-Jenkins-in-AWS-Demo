@@ -56,7 +56,9 @@ pipeline {
         }
        stage("publish to nexus") {
             steps {
-nexusArtifactUploader artifacts: [[artifactId: 'project_devops_test', classifier: 'debug', file: 'project/target/project-1.0-RAMA.war', type: 'war']], credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: '35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: $version_num 
+            def pom = readMavenPom file: 'pom.xml'
+                echo pom.version
+nexusArtifactUploader artifacts: [[artifactId: 'project_devops_test', classifier: 'debug', file: 'project/target/project-1.0-RAMA.war', type: 'war']], credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: '35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: pom.version
                     }
                 }
     }
