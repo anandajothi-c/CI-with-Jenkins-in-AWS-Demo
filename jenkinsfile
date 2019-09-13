@@ -18,6 +18,7 @@ pipeline {
         NEXUS_REPOSITORY = "devops-demo-anand"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus_credentials"
+        version_num=${env.BUILD_NUMBER}
     }
     stages {
         stage("clone code") {
@@ -50,7 +51,7 @@ pipeline {
         }
        stage("publish to nexus") {
             steps {
-nexusArtifactUploader artifacts: [[artifactId: 'project_devops_test', classifier: 'debug', file: 'project/target/project-1.0-RAMA.war', type: 'war']], credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: '35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: ${env.BUILD_NUMBER}
+nexusArtifactUploader artifacts: [[artifactId: 'project_devops_test', classifier: 'debug', file: 'project/target/project-1.0-RAMA.war', type: 'war']], credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: '35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: $version_num 
                     }
                 }
     }
