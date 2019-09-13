@@ -40,10 +40,9 @@ pipeline {
         stage("sonar build") {
             steps {
                 script {
-                    // If you are using Windows then you should use "bat" step
-                    // Since unit testing is out of the scope we skip them
-                    sh (/mvn sonar:sonar -Dsonar.host.url=http://35.187.24.143:9000 -Dsonar.login=c649f300572b3497c733fcdcb016128115eab7c9/)
-                }
+                    withSonarQubeEnv(credentialsId: 'c649f300572b3497c733fcdcb016128115eab7c9', installationName: 'Sonarqube_devops_test') { // You can override the credential to be used
+      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
+      }
             }
         }
        stage("publish to nexus") {
