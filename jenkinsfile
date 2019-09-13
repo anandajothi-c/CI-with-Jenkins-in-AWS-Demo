@@ -42,7 +42,5 @@ pipeline {
 nexusArtifactUploader credentialsId: 'nexus_devops', groupId: 'com.test.anand', nexusUrl: 'http://35.246.44.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devops-demo-anand/', version: '1.0'
                     }
                 }
-            }
-        }
     }
 }
