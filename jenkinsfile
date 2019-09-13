@@ -26,7 +26,11 @@ pipeline {
                 script {
                     // Let's clone the source
                     git 'https://github.com/anandajothi-c/CI-with-Jenkins-in-AWS-Demo.git';
-                    version_num=sh (echo ${env.BUILD_NUMBER})
+                    version_num = VersionNumber(
+                versionNumberString: '${BUILDS_ALL_TIME}',
+                worstResultForIncrement: 'NOT_BUILT',
+                versionPrefix: "otherprefix.",
+            )
                 }
             }
         }
